@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+{% block content %}
+<div class="spacer">
+    &nbsp;
+</div>
+<p><strong>Name:</strong> {{ recipe.name }}</p>
+<p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+
+
+{% endblock %}

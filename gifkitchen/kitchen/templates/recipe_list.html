@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+<head>
+  {% block css %}
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'css/recipestyles.css' %}"/>
+  {% endblock %}
+</head>
+<body>
+{% block content %}
+
+<div id="reclist">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+          <h1>Recipes</h1>
+          <form  type="get" action={% url 'recipes' %} style="margin: 1">
+<input type="checkbox" align="left" name="All"> <label for=myCheckbox> All Recipes </label> &nbsp;
+<input type="checkbox" name="Breakfast"> <label for=myCheckbox> Breakfast </label> &nbsp;
+<input type="checkbox" name="Lunch"> <label for=myCheckbox> Lunch </label> &nbsp;
+<input type="checkbox" name="Dinner"> <label for=myCheckbox> Dinner </label> &nbsp;
+<input type="checkbox" name="Dessert"> <label for=myCheckbox> Dessert </label> &nbsp;
+<input type="checkbox" name="Vegan"> <label for=myCheckbox> Vegan </label> &nbsp;
+<button id="filter" class="btn btn-default" type="submit" >Apply Filter(s)</button>
+
+               </form>
+  {% if recipe_list %}
+
+
+  <ul>
+    {% for recipe in recipe_list %}
+    <li>
+      <img src="{{ recipe.picture.url }}">
+      <h3>{{ recipe.name }}</h3>
+      <p>{{ recipe.instructions }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>There are no recipes.</p>
+  {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+</body>
+
+
+<!--
+<div id="header" class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <div class="jumbotron">
+          <h1>Recipes</h1>
+  {% if recipe_list %}
+
+
+  <ul>
+    {% for recipe in recipe_list %}
+    <li>
+      <img src="{{ recipe.picture.url }}" style="width:200px;height:200px;">
+      <h3>{{ recipe.name }}</h3>
+      <p>{{ recipe.instructions }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>There are no recipes.</p>
+  {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <h1>Written Instructions</h1>                 
+        <p>Step 1: Take Da Tofu. Step 2: Dry Da Tofu: Step 3: Cook Da Tofu. </p>
+      </div>
+    </div>
+  </div>
+</div>
+-->

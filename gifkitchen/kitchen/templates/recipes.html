@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+{% block content %}
+
+<div id="header" class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <div class="jumbotron">
+          <h1>Recipes</h1>
+  {% if recipe_list %}
+  <ul>
+    {% for recipe in recipe_list %}
+      <li>
+        <a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a>
+        <img src="{{recipe.picture.url}}" style="width:200px;height:200px;">
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no recipes.</p>
+  {% endif %}       
+          <img class="img-responsive" src="https://external-preview.redd.it/G4PJC5OHqKJc5kDK0AZw_BB-2JIYcOhsgUwUfteXhT0.gif?format=png8&s=f700570a47fdf26d6e087fd7642ada9a587bd443">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <h1>Written Instructions</h1>                 
+        <p>Step 1: Take Da Tofu. Step 2: Dry Da Tofu: Step 3: Cook Da Tofu. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
